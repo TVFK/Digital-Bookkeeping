@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book information</title>
+</head>
+<body>
+    <div th:text="'Название: ' + ${book.getName()} "></div>
+    <div th:text="'Год написания: ' + ${book.getCreationYear()}"></div>
+    <div th:text="'Автор: ' + ${book.getAuthor()}"></div>
+
+    <hr/>
+
+    <form th:if="${book.getOwner()!=null}" th:method="PATCH" th:action="@{/book/{id}/liberate(id=${book.getId()})}">
+        <div th:text="'Книга сейчас у ' + ${owner.getName()}">person</div>
+        <input type="submit" value="Освободить"/>
+    </form>
+
+    <form th:unless="${book.getOwner()!=null}" th:method="PATCH" th:action="@{/book/{id}/set(id=${book.getId()})}">
+        <div  th:text="'Эта книга сейчас свободна. Кому назначить её?'"></div>
+        <label for="people">Выберите человека</label>
+        <select id="people" th:object="${person}" th:field="*{id}">
+            <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getName()}"> Person name </option>
+        </select>
+        <input type="submit" value="Назначить книгу">
+    </form>
+
+    <hr/>
+
+    <a th:href="@{/book/{id}/edit(id=${book.getId()})}">Редактировать</a>
+
+    <hr/>
+
+    <form th:method="DELETE" th:action="@{/book/{id}(id=${book.getId()})}">
+        <input type="submit" value="Удалить"/>
+    </form>
+</body>
+</html>
+
+
+
