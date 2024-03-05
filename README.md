@@ -4,7 +4,9 @@ Web application with Spring, Hibernate and JWT for digital book inventory with l
 Project is created with:
 * Java 21
 * Spring 6
-* Spring boot 3.2.1
+* Spring boot web
+* Spring data jpa & Hibernate
+* Spring Security
 * PostgreSQL
 * java-jwt 
 * Thymeleaf
