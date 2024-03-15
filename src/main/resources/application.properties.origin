@@ -1,0 +1,11 @@
+# ConfigurationData source
+spring.datasource.driver-class-name=
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+
+# Configuration Hibernate
+spring.jpa.properties.hibernate.dialect=
+
+jwt_secret=ddk138Si8Di1DO9dl31
+

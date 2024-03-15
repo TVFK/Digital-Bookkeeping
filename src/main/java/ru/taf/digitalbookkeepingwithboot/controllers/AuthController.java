@@ -1,6 +1,7 @@
 package ru.taf.digitalbookkeepingwithboot.controllers;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -13,18 +14,13 @@ import ru.taf.digitalbookkeepingwithboot.util.PersonValidator;
 
 @Controller
 @RequestMapping("/auth")
+@AllArgsConstructor
 public class AuthController {
+
     private final RegistrationService registrationService;
     private final PersonValidator personValidator;
     private final JWTUtil jwtUtil;
     private final ModelMapper modelMapper;
-
-    public AuthController(RegistrationService registrationService, PersonValidator personValidator, JWTUtil jwtUtil, ModelMapper modelMapper) {
-        this.registrationService = registrationService;
-        this.personValidator = personValidator;
-        this.jwtUtil = jwtUtil;
-        this.modelMapper = modelMapper;
-    }
 
     @GetMapping("/login")
     public String loginPage(){

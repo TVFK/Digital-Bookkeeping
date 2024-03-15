@@ -1,5 +1,6 @@
 package ru.taf.digitalbookkeepingwithboot.services;
 
+import lombok.AllArgsConstructor;
 import ru.taf.digitalbookkeepingwithboot.models.Book;
 import ru.taf.digitalbookkeepingwithboot.models.Person;
 import ru.taf.digitalbookkeepingwithboot.repositories.BooksRepository;
@@ -16,14 +17,11 @@ import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
+@AllArgsConstructor
 public class BooksService {
+
     private final PeopleRepository peopleRepository;
     private final BooksRepository booksRepository;
-
-    public BooksService(PeopleRepository peopleRepository, BooksRepository booksRepository) {
-        this.peopleRepository = peopleRepository;
-        this.booksRepository = booksRepository;
-    }
 
     public Page<Book> findAll(int pageNumber, int booksPerPage, boolean sort_by_year){
         Pageable pageable;

@@ -5,12 +5,20 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "Person")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Person {
     @Id
     @Column(name = "id")
@@ -36,38 +44,6 @@ public class Person {
     @OneToMany(mappedBy = "owner")
     private List<Book> books;
 
-    public Person() {}
-
-    public Person(int personId, String name, int birthYear) {
-        this.id = personId;
-        this.name = name;
-        this.birthYear = birthYear;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getBirthYear() {
-        return birthYear;
-    }
-
-    public void setBirthYear(int birthYear) {
-        this.birthYear = birthYear;
-    }
-
     public List<Book> getBooks() {
         if (this.books == null) {
             books = new ArrayList<>();
@@ -75,25 +51,5 @@ public class Person {
             return books;
         }
         return null;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 }

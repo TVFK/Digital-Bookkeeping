@@ -4,17 +4,27 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Book")
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 public class Book {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @NotEmpty(message =  "Name mustn't be empty")
     @Size(min = 2, max = 100, message = "name must be between 2 and 50 characters")
     @Column(name = "title")
@@ -39,67 +49,8 @@ public class Book {
     @Transient
     private boolean bookIsOverdue;
 
-    public Book(){};
-
-    public Book(String name, String author, int creationYear) {
-        this.name = name;
-        this.author = author;
-        this.creationYear = creationYear;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int book_id) {
-        this.id = book_id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public int getCreationYear() {
-        return creationYear;
-    }
-
-    public void setCreationYear(int creationYear) {
-        this.creationYear = creationYear;
-    }
-
-    public Person getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Person owner) {
-        this.owner = owner;
-    }
-
     public boolean isBookIsOverdue() {
         return (Duration.between(this.timeTakeBook, LocalDateTime.now()).getSeconds()/86400) > 10;
     }
 
-    public void setBookIsOverdue(boolean bookIsOverdue) {
-        this.bookIsOverdue = bookIsOverdue;
-    }
-
-    public LocalDateTime getTimeTakeBook() {
-        return timeTakeBook;
-    }
-
-    public void setTimeTakeBook(LocalDateTime timeTakeBook) {
-        this.timeTakeBook = timeTakeBook;
-    }
 }

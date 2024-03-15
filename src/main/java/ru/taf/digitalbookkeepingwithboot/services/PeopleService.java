@@ -1,5 +1,6 @@
 package ru.taf.digitalbookkeepingwithboot.services;
 
+import lombok.AllArgsConstructor;
 import ru.taf.digitalbookkeepingwithboot.models.Person;
 import ru.taf.digitalbookkeepingwithboot.repositories.PeopleRepository;
 import org.hibernate.Hibernate;
@@ -12,14 +13,10 @@ import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
+@AllArgsConstructor
 public class PeopleService {
 
     private final PeopleRepository peopleRepository;
-
-    @Autowired
-    public PeopleService(PeopleRepository peopleRepository) {
-        this.peopleRepository = peopleRepository;
-    }
 
     public List<Person> findAll(){
         return peopleRepository.findAll();

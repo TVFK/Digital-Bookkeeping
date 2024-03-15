@@ -1,5 +1,6 @@
 package ru.taf.digitalbookkeepingwithboot.services;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,13 +12,10 @@ import ru.taf.digitalbookkeepingwithboot.security.PersonDetails;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class PersonDetailsService implements UserDetailsService {
 
     private final PeopleRepository peopleRepository;
-
-    public PersonDetailsService(PeopleRepository peopleRepository) {
-        this.peopleRepository = peopleRepository;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

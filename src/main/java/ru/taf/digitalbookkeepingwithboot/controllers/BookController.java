@@ -1,6 +1,7 @@
 package ru.taf.digitalbookkeepingwithboot.controllers;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -16,15 +17,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/book")
+@AllArgsConstructor
 public class BookController {
+
     private final PeopleService peopleService;
     private final BooksService booksService;
-
-    @Autowired
-    public BookController(PeopleService peopleService, BooksService booksService) {
-        this.peopleService = peopleService;
-        this.booksService = booksService;
-    }
 
     @GetMapping
     public String index(Model model,
